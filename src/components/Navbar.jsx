@@ -22,19 +22,35 @@ const Navbar = () => {
                             key={index}
                             to={path}
                             className={({ isActive }) =>
-                                `flex flex-col items-center gap-1 ${isActive ? "text-black font-semibold" : "text-gray-700"}`
+                                `flex flex-col items-center gap-1 ${isActive ? "text-gray-300 font-semibold" : "text-white"}`
                             }
                         >
                             {({ isActive }) => (
                                 <>
                                     <p>{labels[index]}</p>
-                                    <hr className={`w-2/4 border-none h-[1.5px] bg-gray-700 transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+                                    <hr className={`w-2/4 border-none h-[1.5px] bg-white transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
                                 </>
                             )}
                         </NavLink>
                     );
                 })}
             </ul>
+            <div className="flex items-center gap-6">
+                <img src={assets.search_icon} className='w-5 cursor-pointer' alt="" />
+
+                <div className="group relative">
+                    <img src={assets.profile_icon} className='w-5 cursor-pointer' alt="" />
+                    {/* Dropdown */} 
+                        <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
+                        <div className="flex flex-col gap-2 w-36 p-2 text-gray-500 border rounded bg-white">
+                            <p className="cursor-pointer hover:text-black hover:bg-gray-50 p-1">Profile</p>
+                            <p className="cursor-pointer hover:text-black hover:bg-gray-50 p-1">Orders</p>
+                            <p className="cursor-pointer hover:text-black hover:bg-gray-50 p-1">Log out</p>
+                        </div>
+                    </div>
+                </div>
+                <img onClick={() => setVisible(true)} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
+            </div>
             {/* sidebar menu mobile */}
             <div className={`top-0 absolute bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`}>
                 <div className="flex flex-col text-gray-600">
