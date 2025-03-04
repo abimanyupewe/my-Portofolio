@@ -1,12 +1,19 @@
 import React from 'react'
+import { Route, Routes } from "react-router-dom"
 import Navbar from './components/Navbar'
-import HeroSection from './components/home/HeroSection'
+import Home from './pages/Home'
+import About from './pages/About'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
-    <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] bg-black'>
+    <div className=' bg-gray-50'>
       <Navbar />
-      <HeroSection/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+      <Footer/>
     </div>
   )
 }

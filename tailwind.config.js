@@ -7,7 +7,15 @@ export default {
     "src/components/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ['Poppins',],
+        ubuntu: ['Ubuntu'],
+      },
+      colors: {
+        gelap: "#191825",
+      },
+    },
   },
   plugins: [],
 };
