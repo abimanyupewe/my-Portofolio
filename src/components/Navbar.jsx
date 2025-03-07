@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { assets } from '../assets/assets.js';
+import { HashLink } from 'react-router-hash-link';
 
 const Navbar = () => {
     const [visible, setVisible] = useState(false); // State untuk menu mobile
@@ -53,13 +54,13 @@ const Navbar = () => {
                 setScrolled(false);
             }
         };
-    
+
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
-    
+
 
     return (
         <header className={`flex z-20 fixed top-0 items-center justify-between py-5 font-medium w-full left-0 lg:px-24 px-8 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-8' : 'bg-transparent'}`}>
@@ -93,18 +94,20 @@ const Navbar = () => {
                                 {/* Dropdown Menu */}
                                 {isCollectionOpen && (
                                     <div className="absolute top-full left-0 mt-2 w-48 bg-white border rounded shadow-lg z-50 transition-all duration-300">
-                                        <NavLink
-                                            to="/collection/skills"
+                                        <HashLink
+                                            to="/#sklis" // ID section tujuan
+                                            smooth // Efek scroll smooth
                                             className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                                             onClick={() => {
-                                                setIsCollectionOpen(false);
+                                                setIsCollectionOpen(false); // Tutup dropdown
                                                 setIsRotated(false); // Reset rotasi ikon
                                             }}
                                         >
                                             Skills
-                                        </NavLink>
-                                        <NavLink
-                                            to="/collection/projects"
+                                        </HashLink>
+                                        <HashLink
+                                            to="/#project"
+                                            smooth
                                             className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                                             onClick={() => {
                                                 setIsCollectionOpen(false);
@@ -112,8 +115,8 @@ const Navbar = () => {
                                             }}
                                         >
                                             Projects
-                                        </NavLink>
-                                        <NavLink
+                                        </HashLink>
+                                        {/* <NavLink
                                             to="/collection/certificates"
                                             className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                                             onClick={() => {
@@ -122,7 +125,7 @@ const Navbar = () => {
                                             }}
                                         >
                                             Certificates
-                                        </NavLink>
+                                        </NavLink> */}
                                     </div>
                                 )}
                             </div>
@@ -151,7 +154,7 @@ const Navbar = () => {
 
             {/* Tombol Menu Mobile */}
             <div className="flex items-center gap-6">
-                <img src={assets.search_icon} className='w-5 cursor-pointer' alt="" />
+                {/* <img src={assets.search_icon} className='w-5 cursor-pointer' alt="" /> */}
                 <img onClick={() => setVisible(true)} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
             </div>
 
@@ -186,8 +189,9 @@ const Navbar = () => {
                         {/* Dropdown Menu Mobile */}
                         {isCollectionMobileOpen && (
                             <div className="transition-all duration-300">
-                                <NavLink
-                                    to="/collection/skills"
+                                <HashLink
+                                    to="/#sklis" // ID section tujuan
+                                    smooth // Efek scroll smooth
                                     className="block pl-8 py-2 text-gray-700 hover:bg-gray-100"
                                     onClick={() => {
                                         setIsCollectionMobileOpen(false);
@@ -196,9 +200,10 @@ const Navbar = () => {
                                     }}
                                 >
                                     Skills
-                                </NavLink>
-                                <NavLink
-                                    to="/collection/projects"
+                                </HashLink>
+                                <HashLink
+                                    to="/#project"
+                                    smooth
                                     className="block pl-8 py-2 text-gray-700 hover:bg-gray-100"
                                     onClick={() => {
                                         setIsCollectionMobileOpen(false);
@@ -207,8 +212,8 @@ const Navbar = () => {
                                     }}
                                 >
                                     Projects
-                                </NavLink>
-                                <NavLink
+                                </HashLink>
+                                {/* <NavLink
                                     to="/collection/certificates"
                                     className="block pl-8 py-2 text-gray-700 hover:bg-gray-100"
                                     onClick={() => {
@@ -218,7 +223,7 @@ const Navbar = () => {
                                     }}
                                 >
                                     Certificates
-                                </NavLink>
+                                </NavLink> */}
                             </div>
                         )}
                     </div>

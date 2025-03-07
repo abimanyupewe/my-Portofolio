@@ -1,45 +1,11 @@
 import React from 'react'
-import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa"; // Import ikon dari react-icons
-import { AiFillTikTok } from "react-icons/ai";
+import HeroSectionAbout from '../components/about/HeroSectionAbout'
+
 
 const About = () => {
     return (
-        <div className='flex w-full h-screen items-center'>
-            {/* Ikon Sosial Media */}
-            <div className="mt-8 flex justify-center gap-6 w-full">
-                <a
-                    href="https://github.com/yourusername"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-blue-500 transition-all duration-300"
-                >
-                    <FaGithub size={24} />
-                </a>
-                <a
-                    href="https://linkedin.com/in/yourusername"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-blue-500 transition-all duration-300"
-                >
-                    <FaLinkedin size={24} />
-                </a>
-                <a
-                    href="https://instagram.com/yourusername"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-violet-500 transition-all duration-300"
-                >
-                    <FaInstagram size={24} />
-                </a>
-                <a
-                    href="https://instagram.com/yourusername"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-violet-500 transition-all duration-300"
-                >
-                    <AiFillTikTok size={24} />
-                </a>
-            </div>
+        <div className=''>
+            <HeroSectionAbout/>
         </div>
     )
 }

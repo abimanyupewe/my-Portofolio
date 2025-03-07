@@ -1,9 +1,10 @@
 import React from 'react'
+import HeroSectionContact from '../components/contact/HeroSectionContact'
 
 const Contact = () => {
   return (
-    <div>
-      
+    <div className="">
+      <HeroSectionContact/>
     </div>
   )
 }

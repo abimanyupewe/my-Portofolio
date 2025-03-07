@@ -1,6 +1,6 @@
 import React from 'react'
-import Title from '../porps/Title'
-import MySkil from '../myskil/MySkil';
+import Title from '../props/Title'
+import MySkil from './myskil/MySkil';
 
 const SkilsSection = () => {
 
@@ -18,15 +18,15 @@ const SkilsSection = () => {
 
 
     return (
-        <div className='px-20 h-screen'>
-            <div className="flex justify-center items-center mt-20">
+        <section id='sklis' className='py-20 lg:py-40 px-20'>
+            <div className="flex justify-center items-center">
                 <Title text1={"MY"} text2={"SKILS"} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
                 <MySkil title="Frameworks & Tools" skills={frameworks} />
                 <MySkil title="Programming Languages" skills={languages} />
             </div>
-        </div>
+        </section>
     )
 }
 
