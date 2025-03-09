@@ -1,14 +1,16 @@
+import TouristaBanner from './assets/Tourista-banner.png'
+
 export const dataProjects = [
     {
       id: 1,
-      image: "https://placehold.co/300",
-      title: "Website E-Commerce",
-      description: "Sebuah website e-commerce dengan fitur lengkap.",
+      image: TouristaBanner,
+      title: "Tourista",
+      description: "Sebuah website tour wisata dengan fitur lengkap dan user friendly.",
       status: "Selesai", // Status
-      category: "Website", // Kategori
-      language: "JavaScript",
+      category: "UI/UX Design", // Kategori
+      language: "None",
       createdAt: "2023-10-01",
-      previewLink: "https://example.com",
+      previewLink: "https://www.figma.com/proto/N16xEVED8z1dghC5unpdrz/Travel-(Tourista)?page-id=0%3A1&node-id=97-4&viewport=459%2C163%2C0.1&t=Z0QjDn5KRlKxUYYE-1&scaling=scale-down-width&content-scaling=fixed",
     },
     {
       id: 2,
