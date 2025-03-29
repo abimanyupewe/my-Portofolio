@@ -6,42 +6,68 @@ import FilterCheckbox from "./project/FilterCheckbox";
 import { dataProjects } from "../../assets/data/project/dataProject.js";
 import Title from '../props/Title.jsx';
 import LanguageFilter from './project/LanguageFilter.jsx';
-// import { assets } from '../../assets/assets.js';
+import { assets } from '../../assets/assets.js';
 
 const Project = () => {
   const [activeTab, setActiveTab] = useState("All Project");
   const [selectedProject, setSelectedProject] = useState(null);
   const [filters, setFilters] = useState([]);
   const [filtersLanguage, setFiltersLanguage] = useState([]);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State untuk toggle sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Fungsi filter project
+  // Enhanced filtering function
   const filteredProjects = dataProjects.filter((project) => {
-    if (activeTab !== "All Project" && project.category !== activeTab) return false;
-    if (filters.length > 0 && !filters.includes(project.status)) return false;
-    if (filtersLanguage.length > 0 && !filtersLanguage.includes(project.language)) return false;
+    // Filter by category tab
+    if (activeTab !== "All Project") {
+      if (Array.isArray(project.category)) {
+        if (!project.category.includes(activeTab)) return false;
+      } else if (project.category !== activeTab) {
+        return false;
+      }
+    }
+
+    // Filter by status (supports array of statuses in project)
+    if (filters.length > 0) {
+      // If project.status is array, check if any matches
+      if (Array.isArray(project.status)) {
+        if (!project.status.some(s => filters.includes(s))) return false;
+      }
+      // If project.status is string, check direct inclusion
+      else if (!filters.includes(project.status)) {
+        return false;
+      }
+    }
+
+    // Filter by language (supports array or string languages in project)
+    if (filtersLanguage.length > 0) {
+      // If project.language is array, check if any matches
+      if (Array.isArray(project.language)) {
+        if (!project.language.some(lang => filtersLanguage.includes(lang))) return false;
+      }
+      // If project.language is string, check direct inclusion
+      else if (!filtersLanguage.includes(project.language)) {
+        return false;
+      }
+    }
+
     return true;
   });
 
   return (
-    <section id='project' className='h-screen py-20 lg:py-36 mb-48 lg:mb-40'>
+    <section id='project' className='min-h-screen py-20 lg:py-36 mb-48 lg:mb-40'>
       <div className="flex justify-center flex-col items-center">
         <Title text1={"MY"} text2={"PROJECTS"} />
-        {/* Tombol Toggle untuk Mobile */}
+        {/* Mobile Toggle Button */}
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="md:hidden bg-purple-300 text-white px-4 py-2 rounded-sm shadow-lg mt-4 flex items-center justify-end gap-2"
+          className="md:hidden bg-purple-400 text-white px-4 py-2 rounded-md mt-4 flex items-center gap-2"
         >
           {isSidebarOpen ? "Hide Filters" : "Show Filters"}
-          {/* <img
-            className={`h-3 transition-transform duration-300 ${isSidebarOpen ? "rotate-180" : ""}`}
-            src={assets.dropdown_icon} // Pastikan path ini valid
-            alt="Dropdown Icon"
-          /> */}
+          <img src={assets.chevron_right} alt="" className={`w-4 h-4 transition-transform ${isSidebarOpen ? "rotate-180" : ""}`} />
         </button>
       </div>
 
-      {/* Overlay untuk Mobile */}
+      {/* Mobile Overlay */}
       {isSidebarOpen && (
         <div
           onClick={() => setIsSidebarOpen(false)}
@@ -52,37 +78,43 @@ const Project = () => {
       <div className="flex p-4 mt-10">
         {/* Sidebar */}
         <div
-          className={`fixed md:static inset-y-0 left-0 w-64 bg-white p-4 space-y-4 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-            } md:translate-x-0 transition-transform duration-300 ease-in-out z-40`}
+          className={`fixed md:static inset-y-0 left-0 w-64 bg-white p-4 space-y-4 overflow-y-auto transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+            } md:translate-x-0 transition-transform duration-300 ease-in-out z-40 shadow-md md:shadow-none`}
         >
-          {/* TabBar */}
           <TabBar activeTab={activeTab} setActiveTab={setActiveTab} />
-
-          {/* FilterCheckbox */}
-          <p>Filters</p>
           <FilterCheckbox filters={filters} setFilters={setFilters} />
-
-          {/* LanguageFilter */}
-          <LanguageFilter filtersLanguage={filtersLanguage} setFiltersLanguage={setFiltersLanguage} />
+          <LanguageFilter
+            filtersLanguage={filtersLanguage}
+            setFiltersLanguage={setFiltersLanguage}
+          />
         </div>
 
         {/* Main Content */}
-        <div className="w-full h-[650px] overflow-y-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {/* Menampilkan proyek yang sudah difilter */}
-            {filteredProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onClick={() => setSelectedProject(project)}
-              />
-            ))}
-          </div>
+        <div className="w-full h-[750px] overflow-y-auto px-4">
+          {filteredProjects.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filteredProjects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onClick={() => setSelectedProject(project)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full text-gray-500">
+              <p className="text-lg">No projects found</p>
+              <p className="text-sm">Try adjusting your filters</p>
+            </div>
+          )}
         </div>
 
-        {/* Modal */}
+        {/* Project Modal */}
         {selectedProject && (
-          <ProjectPopup project={selectedProject} onClose={() => setSelectedProject(null)} />
+          <ProjectPopup
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
         )}
       </div>
     </section>

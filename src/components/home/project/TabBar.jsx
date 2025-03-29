@@ -1,7 +1,7 @@
 import React from "react";
 
 const TabBar = ({ activeTab, setActiveTab }) => {
-  const tabs = ["All Project", "Website", "App", "UI/UX Design"];
+  const tabs = ["All Project", "Website", "App", "UI/UX Design", "Fullstack"];
 
   return (
     <div className="flex flex-col space-y-2 bg-gray-100 border">

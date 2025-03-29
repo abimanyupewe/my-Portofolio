@@ -8,25 +8,29 @@ const ProjectPopup = ({ project, onClose }) => {
         &times;
       </button>
       <div className="bg-white rounded-lg p-6 max-w-2xl w-full">
-        <img src={project.image} alt={project.title} className="w-full h-64 object-cover rounded-lg" />
+        <div className="overflow-hidden rounded-lg group">
+          <img src={project.image} alt={project.title} className="w-full h-64 object-cover rounded-lg transition-transform duration-300 group-hover:scale-105" />
+        </div>
         <h2 className="text-2xl font-bold mt-4">{project.title}</h2>
         <p className="text-gray-700 mt-2 mb-10">{project.description}</p>
         <div className="flex items-center justify-between">
-        <p className="text-gray-600">Kategori: <Badge type="categoryProject" value={project.category} /></p>
-        <p className="text-gray-600">Languange: <Badge type="language" value={project.language} /></p>
+          <p className="text-gray-600">Kategori: <Badge type="categoryProject" value={project.category} /></p>
+          <p className="text-gray-600">Languange: <Badge type="language" value={project.language} /></p>
         </div>
         <div className="flex items-center justify-between">
           <p className="text-gray-600 mt-2">Status: <Badge type="status" value={project.status} /></p>
           <p className="text-gray-600">{project.createdAt}</p>
         </div>
-        <a
-          href={project.previewLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 bg-purple-300 text-white px-4 py-2 rounded hover:bg-purple-600 justify-center items-center flex w-full"
-        >
-          Preview
-        </a>
+        {project.previewLink !== "None" ? (
+          <a
+            href={project.previewLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 bg-purple-300 text-white px-4 py-2 rounded hover:bg-purple-600 justify-center items-center flex w-full"
+          >
+            Preview
+          </a>
+        ) : null}
       </div>
     </div>
   );

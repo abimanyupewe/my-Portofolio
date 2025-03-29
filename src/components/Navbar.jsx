@@ -64,7 +64,7 @@ const Navbar = () => {
 
     return (
         <header className={`flex z-20 fixed top-0 items-center justify-between py-5 font-medium w-full left-0 lg:px-24 px-8 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-8' : 'bg-transparent'}`}>
-            <Link to='/'><h1 className='text-3xl text-gray-500'>tikKoma;</h1></Link>
+            <Link to='/'><h1 className='text-3xl text-gray-500'>Bims;</h1></Link>
 
             {/* Menu Desktop */}
             <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
