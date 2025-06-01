@@ -63,7 +63,7 @@ const Navbar = () => {
 
 
     return (
-        <header className={`flex z-20 fixed top-0 items-center justify-between py-5 font-medium w-full left-0 lg:px-24 px-8 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-8' : 'bg-transparent'}`}>
+        <header className={`flex z-30 md-z-50 fixed top-0 items-center justify-between py-5 font-medium w-full left-0 lg:px-24 px-8 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-8' : 'bg-transparent'}`}>
             <Link to='/'><h1 className='text-3xl text-gray-500'>Bims;</h1></Link>
 
             {/* Menu Desktop */}
@@ -160,7 +160,7 @@ const Navbar = () => {
 
             {/* Sidebar Menu Mobile */}
             <div
-                className={`fixed top-0 left-0 right-0 z-20 bg-white transition-all duration-500 overflow-hidden ease-in ${visible ? 'h-full' : 'h-0'
+                className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-500 overflow-hidden ease-in ${visible ? 'h-full' : 'h-0'
                     }`}
             >
                 <div className="flex flex-col text-gray-600 ">
